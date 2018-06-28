@@ -123,14 +123,12 @@
                     <input type="text" class="form-control" ng-model="tt" >
                   </div>
               </div>
-            </div>
-            <div class="row">
               <div class="col-md-3" >
                 <a ng-click="saveTitle()" class="btn btn-small btn-success btn-block">Update Title</a>
               </div>
             </div>
             
-            <div class="row">
+            <div class="row" ng-show="account > 0">
               <div class="col-md-12">
                 <h3>Delegate</h3>
               </div>
@@ -139,7 +137,7 @@
               </div>
             </div>
               
-            <div class="row">
+            <div class="row" ng-show="account > 0">
               <div class="col-md-4">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Delegate</label>
@@ -157,19 +155,19 @@
                   </div>
               </div>
             </div>
-            <div class="row">
+            <div class="row" ng-show="account > 0">
               <div class="col-md-3" >
                 <a ng-click="updateDelegate()" class="btn btn-small btn-success btn-block">Update Delegate</a>
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="account > 0">
               <div class="col-md-12">
                 <h3>Remove Account</h3>
               </div>
             </div>
               
-            <div class="row">
+            <div class="row" ng-show="account > 0">
               <div class="col-md-3">
                 <a ng-click="remove()" class="btn btn-small btn-success btn-block">Remove Account</a>
               </div>

@@ -34,7 +34,7 @@
         font-size:1.9em;
     }
     .headLogo{
-      width:50px;
+      width:250px;
     }
     </style>
   </head>
@@ -44,7 +44,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="headLogo" src="img/logo.png"> TezBox</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="headLogo" src="img/logo.png"></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -52,16 +52,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://chrome.google.com/webstore/detail/tezbox/mnfifefkajgofkcjkemidiaecocnkjeh">Download</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#download">Mobile App</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#features">Features</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Socialise</a>
+              <a class="nav-link js-scroll-trigger" href="#contact">Socialize</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" target="_blank" href="https://github.com/tezbox/tezbox-chrome-plugin">View it on Github</a>
@@ -74,40 +68,37 @@
     <header class="masthead">
       <div class="container h-100">
         <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
-              <h1 class="mb-5">TezBox is a multi-platform Tezos Vault, streamlining payments and DAPP integration</h1>
-              <a href="https://chrome.google.com/webstore/detail/tezbox/mnfifefkajgofkcjkemidiaecocnkjeh" target="_blank" class="btn btn-outline btn-xl js-scroll-trigger">Get Chrome Plugin</a>
+          <div class="col-lg-12 my-auto" style="text-align:center;">
+            <img src="img/multiplatform.png" class="img-fluid " alt="">
+            <div class="col-md-12 mx-auto">
+              <div class="download-buttons">
+                <a class="badge-link" href="https://chrome.google.com/webstore/detail/tezbox/mnfifefkajgofkcjkemidiaecocnkjeh" target="_blank"><img src="img/chrome.png" alt=""></a>
+                <a class="badge-link" href="https://tezbox.github.io/wallet" target="_blank"><img src="img/online.png" alt=""></a>
+                <a class="badge-link" href="https://play.google.com/store/apps/details?id=io.github.tezbox" target="_blank"><img src="img/google-play-badge.svg" alt=""></a>
+                <!--<a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>-->
+              </div>
+              <p style="margin-top:10px;font-weight:bold;">with macos, Windows, *nix and iOS in development...</p>
             </div>
-          </div>
-          <div class="col-lg-5 my-auto">
-            <img src="img/cb-web.png" class="img-fluid" alt="">
-            
           </div>
         </div>
       </div>
     </header>
+    <style>
+      .download-buttons a img {
+        width: 200px;
+      }
+      .download-buttons {
+        text-align:center;
+        margin-top:30px;
+      }
+    </style>
 
-    <section class="download bg-primary text-center" id="download">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8 mx-auto">
-            <h2 class="section-heading">Use TezBox with your mobile devices!</h2>
-            <p>Connect your TezBox vault to your mobile devices to get Tez on-the-go</p>
-            <div class="badges">
-              <a class="badge-link" href="https://play.google.com/store/apps/details?id=io.github.tezbox" target="_blank"><img src="img/google-play-badge.svg" alt=""></a>
-              <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <section class="features" id="features">
       <div class="container">
         <div class="section-heading text-center">
-          <h2>What can TezBox do</h2>
-          <p class="text-muted">Check out what TezBox can do for you</p>
+          <h2>TezBox Features</h2>
+          <p class="text-muted">TezBox was the earliest functional GUI wallet for Tezos, developed shortly after the ICO by @stephenandrews. TezBox has grown to be one of the major community developed wallets and will continue to provide users and developers with an easy to use, powerful and secure wallet.</p>
           <hr>
         </div>
         <div class="row">
@@ -131,32 +122,32 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="feature-item">
-                    <i class="icon-camera text-primary"></i>
+                    <i class="icon-lock text-primary"></i>
                     <h3>Decentralized</h3>
-                    <p class="text-muted">All private keys are stored offline and encrypted</p>
+                    <p class="text-muted">All private keys are stored on your device safely and securely - with Trezor and Ledger support in development</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="feature-item">
                     <i class="icon-screen-smartphone text-primary"></i>
                     <h3>Extremely Mobile</h3>
-                    <p class="text-muted">Easily backup your TezBox on multiple devices</p>
+                    <p class="text-muted">Easily backup your TezBox on multiple devices and use it while you are on the run from multiple devices and platforms</p>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-6">
                   <div class="feature-item">
-                    <i class="icon-present text-primary"></i>
+                    <i class="icon-directions text-primary"></i>
                     <h3>Developer Friendly</h3>
-                    <p class="text-muted">Easily integrate TezBox with your DAPP to streamline payments!</p>
+                    <p class="text-muted">Easily integrate TezBox with your DAPP to streamline payments! Check us out on <a href="https://github.com/tezbox/tezbox-chrome-plugin" target="_blank">github</a> for more details</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="feature-item">
-                    <i class="icon-lock-open text-primary"></i>
+                    <i class="icon-speech text-primary"></i>
                     <h3>Open Source</h3>
-                    <p class="text-muted">Checkout our source code on GitHub!</p>
+                    <p class="text-muted">All of our code is online, open source and auditable. Feel free to fork, pull, push and report and issues</p>
                   </div>
                 </div>
               </div>
