@@ -11,7 +11,7 @@
             <p class="alert alert-danger"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Please write your seed words below and store them in a secure place. These can be used to restore your wallet.</strong></p>
         </div>
         <div class="col-md-10 col-md-offset-1">
-            <p class="mnemonic" ng-bind-html="mnemonic"></p>
+            <p class="mnemonic" ng-bind-html="showSeed(mnemonic)"></p>
             <div class="form-group">
                 <input autocomplete="off" type="password" class="text-center form-control" ng-model="passphrase" placeholder="Optional Passphrase">
             </div>

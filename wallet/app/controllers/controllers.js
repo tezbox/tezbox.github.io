@@ -5,9 +5,9 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         $location.path('/new');
     };
     $scope.newMnemonic = function(){
-       $scope.mnemonic = showSeed(window.eztz.crypto.generateMnemonic());
+       $scope.mnemonic = window.eztz.crypto.generateMnemonic();
     }
-    var showSeed = function(m){
+    $scope.showSeed = function(m){
       var mm = m.split(" ");
       return $sce.trustAsHtml("<span>"+mm.join("</span><span>")+"</span>");
     }
@@ -299,6 +299,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         $location.path('/unlock');
     }
     $scope.cancel = function(){
+        Storage.clearStore();
         $location.path('/new');
     };
     $scope.password = '';
