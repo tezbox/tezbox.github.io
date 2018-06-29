@@ -12,25 +12,23 @@
   </head>
 
   <body>
-    <div class="container">
-      <div id="area" ng-view></div>
-    </div>
-    <!-- build:js popup.js -->
+    <div id="area" ng-view></div>
     <script src="js/popup.js"></script>
     <script src="js/eztz.min.js"></script>
+    <script>window.eztz.node.setProvider('http://96.126.99.67:3000');</script>
     <script src="js/sjcl.js"></script>
-    <script src="js/jdenticon.js"></script>
+    <script src="js/blockies.min.js"></script>
+    <script src="js/qrcode.js"></script>
     <script src="js/jquery/jquery.min.js"></script>
     <script src="js/underscore/underscore.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
     <script src="js/angular/angular.min.js"></script>
-    <script src="app/modules/angular-underscore.min.js"></script>
     <script src="app/modules/angular-route.min.js"></script>
-    <script src="app/modules/ui-bootstrap-0.9.0.min.js"></script>
+    <script src="app/modules/angular-blockies.js"></script>
+    <script src="app/modules/angular-qrcode.js"></script>
     <script src="app/app.js"></script>
     <script src="app/services/storage.js"></script>
     <script src="app/controllers/controllers.js"></script>
-    <!-- endbuild -->
     <div id="loadingSpinnerContainer">
     <div class="bg"></div>
     <div id="loading-bar-spinner" class="spinner"><div class="spinner-icon"></div></div>

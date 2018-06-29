@@ -1,30 +1,70 @@
 <div>
     <div class="row mainHeaderBox">
-        <div class="col-md-6">
+        <div class="col-xs-6">
             <span class="logo"><img class="logoSmall" src="images/logo.jpg" /> TEZBOX</span>
         </div>
     </div>
-
-
+    
+    <div class="med-container">
+    <div class="row text-center tabChoices">
+      <div class="col-xs-4">
+        <a ng-click="type = 'seed'" ng-class="type == 'seed' ? 'selected' : ''">Seed Phrase</a>
+      </div>
+      <div class="col-xs-4">
+        <a  ng-click="type = 'private'" ng-class="type == 'private' ? 'selected' : ''">Private Key</a>
+      </div>
+      <div class="col-xs-4">
+        <a  ng-click="type = 'ico'" ng-class="type == 'ico' ? 'selected' : ''">Fundraiser Wallet</a>
+      </div>
+    </div>
+    <div ng-show="type == 'seed'" class="row text-center">
+      <div class="col-xs-12">
+            <p class="alert alert-info"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Please enter your seed and passphrase below and we will attempt to restore your wallet.</strong></p>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1">
+            <div class="form-group">
+                <textarea rows=2 class="text-center form-control" placeholder="Enter Seed Words" ng-model="seed"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="password" class="text-center form-control" ng-model="passphrase" placeholder="Optional Passphrase">
+            </div>
+        </div>
+    </div>
+    <div ng-show="type == 'private'" class="row text-center">
+      <div class="col-xs-12">
+            <p class="alert alert-info"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Please enter your private key and we will attempt to restore your wallet.</strong></p>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1">
+            <div class="form-group">
+                <input type="password" class="text-center form-control" ng-model="private_key" placeholder="Private Key">
+            </div>
+        </div>
+    </div>
+    <div ng-show="type == 'ico'" class="row text-center">
+      <div class="col-xs-12">
+            <p class="alert alert-info"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Please enter your seed, email address, password and and we will attempt to restore your wallet. Activation code is optional.</strong></p>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1">
+            <div class="form-group">
+                <textarea rows=2 class="text-center form-control" placeholder="ICO Seed Words" ng-model="seed"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" class="text-center form-control" ng-model="email" placeholder="ICO Email Address">
+            </div>
+            <div class="form-group">
+                <input type="password" class="text-center form-control" ng-model="ico_password" placeholder="ICO Password">
+            </div>
+            <div class="form-group">
+                <input type="text" class="text-center form-control" ng-model="activation_code" placeholder="Activation Code">
+            </div>
+        </div>
+    </div>
     <div class="row text-center">
-        <div class="col-md-4 col-md-offset-4">
-            <p class="alert alert-info"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Please enter your seed phrase below, as well as a password to secure your data and we will atempt to restore your wallet.</strong></p>
-        </div>
-        <div class="col-md-4 col-md-offset-4">
-            <div class="form-group">
-                <textarea rows=3 class="text-center form-control" placeholder="Enter Seed Words"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="password" class="text-center form-control" ng-model="password" placeholder="Enter Password">
-            </div>
-            <div class="form-group">
-                <input type="password" class="text-center form-control" ng-model="password2" placeholder="Repeat Password">
-            </div>
-        </div>
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-xs-4 col-xs-offset-4">
             <a ng-click="restore()" class="btn btn-success btn-block">Restore TezBox</a>
             <br />
             <a ng-click="cancel()" class="btn-link">Cancel</a>
         </div>
+    </div>
     </div>
 </div>
