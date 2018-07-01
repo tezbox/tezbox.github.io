@@ -17,6 +17,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         var keys = window.eztz.crypto.generateKeys($scope.mnemonic, $scope.passphrase);
         var identity = {
             temp : {sk : keys.sk, pk : keys.pk, pkh : keys.pkh},
+            pkh : keys.pkh,
             accounts : [{title: "Main", address : keys.pkh, public_key : keys.pk}],
             account : 0,
             transactions : {},
@@ -26,6 +27,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
     };
 }])
 .controller('MainController', ['$scope', '$location', '$http', 'Storage', function($scope, $location, $http, Storage) {
+    window.hideLoader();
     var protos = {
       "PtCJ7pwoxe8JasnHY8YonnLYjcVHmhiARPJvqcC6VfHT5s8k8sY" : "Betanet"
     }
@@ -34,7 +36,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
        $location.path('/new');
     }
     $scope.setting = Storage.loadSetting();
-    
+
     
       
     $scope.accounts = ss.accounts;
@@ -95,6 +97,31 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
       ss.accounts = $scope.accounts;
       Storage.setStore(ss);
       $scope.refresh();
+    };
+    $scope.kt1 = '';
+    $scope.import = function(){
+      if (!$scope.kt1) return alert("Please enter the KT1 address to import");
+      window.showLoader();      
+      window.eztz.node.query("/chains/main/blocks/head/context/contracts/"+$scope.kt1+"/manager").then(function(r){
+        if (r != $scope.accounts[0].address) return alert("That contract is not managed by your account key");
+        $scope.$apply(function(){
+          $scope.accounts.push(
+            {
+              title : "Account " + ($scope.accounts.length),
+              address : $scope.kt1
+            }
+          );
+          $scope.account = ($scope.accounts.length-1);
+          ss.accounts = $scope.accounts;
+          ss.account = $scope.account;
+          Storage.setStore(ss);
+          $scope.refresh();
+          window.hideLoader();
+        })
+      }).catch(function(r){
+        window.hideLoader();
+        alert("There was an error importing that account");
+      });
     };
     $scope.remove = function(){
       if (confirm("Are you sure you want to proceed with removing this account?")){
@@ -346,21 +373,39 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
             alert("Your password is too short");
             return;
         }
-        try {
-            var sk = sjcl.decrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, '', 10, 32, 'sha512').toString(), ss.ensk);
-        } catch(err){
-           alert("Incorrect password");
-            return;
-        }
-        var identity = {
-            temp : window.eztz.crypto.extractKeys(sk),
-            ensk : ss.ensk,
-            accounts : ss.accounts,
-            account : ss.account,
-            transactions : ss.transactions,
-        };
-        Storage.setStore(identity);
-        $location.path('/main');
+        window.showLoader();
+        setTimeout(function(){
+          $scope.$apply(function(){
+            try {
+              var sk = sjcl.decrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, ss.pkh, 30000, 512, 'sha512').toString(), ss.ensk);
+              var c = window.eztz.crypto.extractKeys(sk);
+            } catch(err){
+              console.log(err);
+              try {
+                var sk = sjcl.decrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, '', 10, 32, 'sha512').toString(), ss.ensk);
+                
+                var c = window.eztz.crypto.extractKeys(sk);
+                ss.ensk = sjcl.encrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, c.pkh, 30000, 512, 'sha512').toString(), sk);
+                ss.pkh = c.pkh;
+              } catch(err){
+                console.log(err);
+                window.hideLoader();
+                alert("Incorrect password");
+                return;
+              }
+            }
+            var identity = {
+                temp : c,
+                ensk : ss.ensk,
+                pkh : ss.pkh,
+                accounts : ss.accounts,
+                account : ss.account,
+                transactions : ss.transactions,
+            };
+            Storage.setStore(identity);
+            $location.path('/main');
+          });
+        }, 100);
     };
 }])
 .controller('EncryptController', ['$scope', '$location', 'Storage', function($scope, $location, Storage) {
@@ -389,15 +434,21 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
             alert("Passwords do not match");
             return;
         }
-        var identity = {
-            temp : ss.temp,
-            ensk : sjcl.encrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, '', 10, 32, 'sha512').toString(), ss.temp.sk),
-            accounts : ss.accounts,
-            account : 0,
-            transactions : ss.transactions,
-        };
-        Storage.setStore(identity);          
-        $location.path("/main");
+        window.showLoader();
+        setTimeout(function(){
+          $scope.$apply(function(){
+            var identity = {
+                temp : ss.temp,
+                ensk : sjcl.encrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, ss.temp.pkh, 30000, 512, 'sha512').toString(), ss.temp.sk),
+                pkh : ss.temp.pkh,
+                accounts : ss.accounts,
+                account : 0,
+                transactions : ss.transactions,
+            };
+            Storage.setStore(identity);          
+            $location.path("/main");
+          });
+        }, 100);
     }
 }])
 .controller('RestoreController', ['$scope', '$location', 'Storage', function($scope, $location, Storage) {
@@ -428,6 +479,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         }
         var identity = {
             temp : {sk : keys.sk, pk : keys.pk, pkh : keys.pkh},
+            pkh : keys.pkh,
             accounts : [{title: "Main", address : keys.pkh, public_key : keys.pk}],
             account : 0,
             transactions : {}

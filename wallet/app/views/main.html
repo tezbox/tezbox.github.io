@@ -185,6 +185,25 @@
               </div>
             </div>
             
+            <div ng-hide="account > 0">
+            <div class="row">
+              <div class="col-md-12">
+                <h3>Import KT1 account</h3>
+                <p>You can use this to import KT1 addresses that have been originated else where (or after you have restored your account). You can view all of your originated KT1 addresses on <a target="_blank" href="http://tzscan.io/{{accounts[account].address}}?default=origination">tzscan.io</a>
+              </div>
+            </div>
+              
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="form-group">
+                    <input type="text" class="form-control" ng-model="kt1" placeholder="KT1...">
+                  </div>
+              </div>
+              <div class="col-md-3" >
+                <a ng-click="import()" class="btn btn-small btn-success btn-block">Import</a>
+              </div>
+            </div>
+            </div>
             
 
             <div class="row" ng-show="account > 0">
