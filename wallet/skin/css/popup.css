@@ -460,3 +460,14 @@ position: absolute;
     text-overflow: ellipsis;
     color: #777;
 }
+.sideContainer{
+  overflow: hidden;
+    position: absolute;
+    top: 70px;
+    left: 0px;
+    right: 0px;
+    padding: 0 20px;
+    bottom: 170px;
+    overflow-y: scroll;
+    padding-bottom: 150px;
+}

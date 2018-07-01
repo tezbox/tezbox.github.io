@@ -1,6 +1,4 @@
 "use strict";
-
-// Declare app level module which depends on filters, and services
 var app = angular.module('popup', [
   'ngRoute',
   'angular-blockies',
@@ -8,42 +6,45 @@ var app = angular.module('popup', [
 ])
 
 app.config(function($routeProvider) {
-    console.log($routeProvider);
     $routeProvider
     .when("/create", {
-        templateUrl : "views/create.html",
+        templateUrl : "app/views/create.html",
         controller : "CreateController",
     })
     .when("/unlock", {
-        templateUrl : "views/unlock.html",
+        templateUrl : "app/views/unlock.html",
         controller : "UnlockController",
     })
     .when("/new", {
-        templateUrl : "views/new.html",
+        templateUrl : "app/views/new.html",
         controller : "NewController",
     })
     .when("/restore", {
-        templateUrl : "views/restore.html",
+        templateUrl : "app/views/restore.html",
         controller : "RestoreController",
     })
     .when("/main", {
-        templateUrl : "views/main.html",
+        templateUrl : "app/views/main.html",
         controller : "MainController",
     })
     .when("/send", {
-        templateUrl : "views/send.html",
+        templateUrl : "app/views/send.html",
         controller : "SendController",
     })
+    .when("/setting", {
+        templateUrl : "app/views/setting.html",
+        controller : "SettingController",
+    })
     .when("/delegate", {
-        templateUrl : "views/delegate.html",
+        templateUrl : "app/views/delegate.html",
         controller : "DelegateController",
     })
     .when("/qr", {
-        templateUrl : "views/qr.html",
+        templateUrl : "app/views/qr.html",
         controller : "QrController",
     })
     .when("/encrypt", {
-        templateUrl : "views/encrypt.html",
+        templateUrl : "app/views/encrypt.html",
         controller : "EncryptController",
     })
     .otherwise({

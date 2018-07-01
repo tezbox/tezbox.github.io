@@ -9,5 +9,11 @@ app.service('Storage', function() {
     r.clearStore = function(){
         localStorage.clear();
     };
+    r.setSetting = function(v){
+        localStorage.setItem('tbsetting', JSON.stringify(v));
+    };
+    r.loadSetting = function(){
+        return JSON.parse(localStorage.getItem('tbsetting'));
+    };
     return r;
 });

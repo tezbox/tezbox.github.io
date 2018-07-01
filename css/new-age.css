@@ -48,7 +48,7 @@ section {
   section h2 {
     font-size: 50px; }
 
-#mainNav {
+#mainNav, #mainNavSub {
   border-color: rgba(34, 34, 34, 0.05);
   background-color: white;
   -webkit-transition: all .35s;

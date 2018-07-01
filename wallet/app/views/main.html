@@ -1,24 +1,44 @@
 <div>
     <div class="mainHeaderBox">
-        <div class="col-md-6">
-            <span class="logo"><img class="logoSmall" src="images/logo.jpg" /> TEZBOX</span>
+        <div class="col-md-4">
+            <span class="logo"><img class="logoSmall" src="skin/images/logo.jpg" /> TEZBOX</span>
         </div>
-        <div class="col-md-6 text-right">
+        <div class="col-md-4 text-center">
+          
+        </div>
+        <div class="col-md-4 text-right">
+            <a ng-click="viewSettings()" class="btn btn-icon btn-default" style="margin-right:10px;"><i style="    font-size: 30px;" class="fa fa-cog" aria-hidden="true"></i></a>
             <a ng-click="lock()" class="btn btn-icon btn-default"><i style="    font-size: 30px;" class="fa fa-lock" aria-hidden="true"></i></a>
         </div>
     </div>
     
     <div class="mainBody">
-      <div class="side">
+      <div class="side" style="padding-bottom: 100px;">
         <h3 style="">My Accounts</h3>
+        <div class="sideContainer">
         <ul class="sidebar">
           <li ng-repeat="a in accounts track by a.address"><a ng-click="loadAccount($index)"><blocky class="avatar" seed='{{a.address}}' size='8' scale='16'></blocky> {{a.title}}<span>{{a.address}}</span></a></li>
           <li><a style="padding-top: 8px!important;" ng-click="add()">Add Account <i class="fa fa-plus" ></i></a></li>
         </ul>
+        </div>
+        <div  style="position:absolute;bottom:50px;font-size:12px;">
+        <p>
+        {{block.net}}<br />
+        Level {{block.level}}<br />
+        <strong>{{block.proto}}</strong><br />
+        {{setting.rpc}}
+        <p class="copy text-center"><a href="https://tezbox.github.io/disclaimer.html" target="_blank">Disclaimer</a> - <a href="https://tezbox.github.io/terms.html" target="_blank">Terms</a> - <a href="https://tezbox.github.io/privacy.html" target="_blank">Privacy</a></p>
+        </p>
+        </div>
       </div>
       <div class="mainArea">
       <div class="innerContainer">
     
+    <div class="row">
+      <div class="col-md-12">
+      <p class="alert alert-warning"><i class="leftIcon fas fa-exclamation-circle"></i><strong>This wallet is connected to the betanet, where you are dealing with live transactions. You can read more about the <a href="https://tezosfoundation.ch/news/tezos-betanet-expectations/" target="_blank">Betanet expectations here</a>.</strong></p>
+    </div>
+    </div>
     <div class="row addressDetails">
         <div class="col-md-3 blocky-container">
           <blocky class="avatar" seed='{{accounts[account].address}}' size='8' scale='16'></blocky>
@@ -58,8 +78,7 @@
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a data-target="#transactions" aria-controls="transactions" role="tab" data-toggle="tab"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
           <li role="presentation"><a data-target="#send" aria-controls="send" role="tab" data-toggle="tab"><i class="fas fa-paper-plane"></i> Send</a></li>
-          <!--<li role="presentation"><a data-target="#receive" aria-controls="receive" role="tab" data-toggle="tab"><i class="fas fa-arrow-circle-down"></i> Receive</a></li>-->
-          <li role="presentation"><a data-target="#delegate" aria-controls="delegate" role="tab" data-toggle="tab"><i class="fas fa-sliders-h"></i> Delegate</a></li>
+          <li role="presentation"><a data-target="#delegate" aria-controls="delegate" role="tab" data-toggle="tab"><i class="fa fa-users"></i> Delegate</a></li>
           <li role="presentation"><a data-target="#settings" aria-controls="settings" role="tab" data-toggle="tab"><i class="fas fa-sliders-h"></i> Settings</a></li>
         </ul>
 
@@ -72,7 +91,7 @@
               <div class='tx' ng-repeat="tx in transactions track by $index">
                     <blocky class="avatar" seed='{{tx.to}}' size='8' scale='16'></blocky>
                     <h3 class="date">{{tx.date}} - {{tx.to}}</h3>
-                    <span class="opHash"><a href="{{'http://zeronet.tzscan.io/' + tx.hash}}" ng-click="openTransaction(tx.hash)">{{tx.hash.slice(0,15)}}..<i class="fa fa-external-link-alt" aria-hidden="true"></i></a></span>
+                    <span class="opHash"><a target="_blank" href="{{'http://tzscan.io/' + tx.hash}}" ng-click="openTransaction(tx.hash)">{{tx.hash.slice(0,15)}}..<i class="fa fa-external-link-alt" aria-hidden="true"></i></a></span>
                     <span class="amt">{{tx.amount}}ꜩ</span>
               </div>
           </div>
@@ -119,25 +138,13 @@
                 </div>
             </div>
           </div>
-          <div role="tabpanel" class="tab-pane" id="receive">
-            <div class="row text-center">
-                <div class="col-md-10 col-md-offset-1">
-                  <img style="min-height:200px; margin:20px;" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{accounts[account].address}}" /><br />
-                  <p class="address">{{accounts[account].address}}</p>
-                </div>
-                <div class="col-md-4 col-md-offset-4">
-                  <a ng-click="copy()" class="btn btn-success btn-block">Copy Address</a>
-                  <br />
-              </div>
-            </div>
-          </div>
           <div role="tabpanel" class="tab-pane" id="delegate">
           <div class="row">
-              <div class="col-md-12" ng-show="account > 0">
+              <div class="col-md-12" ng-show="account > 0 && delegateType == ''">
                   <p class="alert alert-danger"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Please ensure the delegate you are entering has been registered to participate in the baking protocol.</strong></p>
               </div>
               <div class="col-md-12" ng-show="account == 0">
-                  <p class="alert alert-danger"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Delegating from this address is not allowed (lowercas tz addresses). Please create an account (KT address) to use for delegation.</strong></p>
+                  <p class="alert alert-danger"><i class="leftIcon fas fa-exclamation-circle"></i><strong>Delegation from this address is not allowed (lowercase tz addresses) - these are referred to as implicit addresses and the protocol doesn't allow them to delegate to another key. Please create an account (KT address) to use for delegation.</strong></p>
               </div>
             </div>
               
@@ -146,8 +153,7 @@
                   <div class="form-group">
                     <select class="form-control" ng-model="delegateType">
                       <option value="">Custom</option>
-                      <option value="tz1TwYbKYYJxw7AyubY4A9BUm2BMCPq7moaC">Tezzigator</option>
-                      <option value="tz1UsgSSdRwwhYrqq7iVp2jMbYvNsGbWTozp">MyCryptoDelegate</option>
+                      <option value="tz1iZEKy4LaAjnTmn2RuGDf2iqdAQKnRi8kY">Tezzigator</option>
                     </select>
                   </div>
               </div>
@@ -198,9 +204,10 @@
         </div>
 
       </div>
+      
     </div>
     </div>
-    
+      
 
       </div>
     </div>

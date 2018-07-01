@@ -26,10 +26,17 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
     };
 }])
 .controller('MainController', ['$scope', '$location', '$http', 'Storage', function($scope, $location, $http, Storage) {
+    var protos = {
+      "PtCJ7pwoxe8JasnHY8YonnLYjcVHmhiARPJvqcC6VfHT5s8k8sY" : "Betanet"
+    }
     var ss = Storage.loadStore();
     if (!ss || !ss.ensk || !ss.temp){
        $location.path('/new');
     }
+    $scope.setting = Storage.loadSetting();
+    
+    
+      
     $scope.accounts = ss.accounts;
     $scope.account = ss.account;
     $scope.accountDetails = {};
@@ -43,8 +50,38 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
     $scope.parameters = '';
     $scope.delegateType = '';
     $scope.dd = '';
-    
+    $scope.block = {
+      net : "Loading..",
+      level : "N/A",
+      proto : "Loading",
+    };
+    refreshHash = function(){
+      window.eztz.rpc.getHead().then(function(r){
+        $scope.$apply(function(){
+          $scope.block = {
+            net : r.chain_id,
+            level : r.header.level,
+            proto : "Connected to " + protos[r.protocol],
+          };
+        });
+      }).catch(function(e){
+        $scope.$apply(function(){
+          $scope.block = {
+            net : "Error",
+            level : "N/A",
+            proto : "Not Connected",
+          };
+        });
+      });
+    }
+    refreshHash();
+    var ct = setInterval(refreshHash, 20000);
+    $scope.viewSettings = function(){
+        clearInterval(ct);
+        $location.path('/setting');
+    }
     $scope.lock = function(){
+        clearInterval(ct);
         delete ss.temp;
         Storage.setStore(ss);
         $location.path('/unlock');
@@ -199,8 +236,12 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
       }).catch(function(r){
         $scope.$apply(function(){
           window.hideLoader();
-          ee = r.errors[0].id.split(".").pop();
-          alert("Operation Failed! " + r.error + ": Error (" + ee + ")");
+          if (typeof r.errors !== 'undefined'){
+            ee = r.errors[0].id.split(".").pop();
+            alert("Operation Failed! " + r.error + ": Error (" + ee + ")");
+          } else {
+            alert("Operation Failed! Please check your inputs");
+          }
         });
       });
     };
@@ -222,14 +263,14 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
           pk : ss.temp.pk,
           pkh : $scope.accounts[$scope.account].address,
         };
-        window.eztz.rpc.setDelegate(keys, $scope.accounts[$scope.account].address, $scope.delegate, 0).then(function(r){
+        window.eztz.rpc.setDelegate($scope.accounts[$scope.account].address, keys, $scope.dd, 0).then(function(r){
           $scope.$apply(function(){
-            alert("Operation Sent");
+            alert("Delegation operation was successful - this may take a few minutes to update");
             window.hideLoader();
           });
         }).catch(function(r){
           $scope.$apply(function(){
-            alert("Operation Failed");
+            alert("Delegation Failed");
             window.hideLoader();
           });
         });
@@ -238,17 +279,48 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
     
 }])
 .controller('NewController', ['$scope', '$location', 'Storage', function($scope, $location, Storage) {
-    var ss = Storage.loadStore();
-    if (ss && typeof ss.temp != 'undefined' && ss.temp.sk && ss.temp.pk && ss.temp.pkh){
-        $location.path('/main');
-    }  else if (ss && ss.ensk){
-        $location.path('/unlock');
+    $scope.setting = Storage.loadSetting();
+    if (!$scope.setting) $scope.setting = {
+      rpc : "https://rpc.tezrpc.me",
+      disclaimer : false
+    };
+    window.eztz.node.setProvider($scope.setting.rpc);
+    
+    var checkStore = function(){     
+      var ss = Storage.loadStore();
+      if (ss && typeof ss.temp != 'undefined' && ss.temp.sk && ss.temp.pk && ss.temp.pkh){
+          $location.path('/main');
+      }  else if (ss && ss.ensk){
+          $location.path('/unlock');
+      }
+    };
+    if ($scope.setting.disclaimer) {
+      checkStore();
     }
+    $scope.acceptDisclaimer = function(){
+      $scope.setting.disclaimer = true;
+      Storage.setSetting($scope.setting);
+      checkStore();
+    };
     $scope.restore = function(){
         $location.path('/restore');
     };
     $scope.create = function(){
         $location.path('/create');
+    };
+    
+}])
+.controller('SettingController', ['$scope', '$location', 'Storage', function($scope, $location, Storage) {
+    var ss = Storage.loadStore();
+    if (!ss || !ss.ensk || !ss.temp){
+       $location.path('/new');
+    }
+    $scope.setting = Storage.loadSetting();
+
+    $scope.save = function(){
+      Storage.setSetting($scope.setting);
+      window.eztz.node.setProvider($scope.setting.rpc);
+      $location.path('/main');
     };
     
 }])
@@ -362,7 +434,6 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         };
         if ($scope.type == 'ico' && $scope.activation_code){
           window.showLoader(); 
-          window.eztz.node.setDebugMode(true);          
           window.eztz.rpc.activate(identity.temp, $scope.activation_code).then(function(){
             $scope.$apply(function(){
               window.hideLoader();    
