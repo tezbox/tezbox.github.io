@@ -221,7 +221,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
       if ($scope.parameters){
         var op = window.eztz.contract.send($scope.toaddress, $scope.accounts[$scope.account].address, keys, $scope.amount, $scope.parameters, $scope.fee);
       } else {
-        var op = window.eztz.rpc.transfer($scope.accounts[$scope.account].address, keys, $scope.toaddress, parseInt($scope.amount), parseInt($scope.fee));
+        var op = window.eztz.rpc.transfer($scope.accounts[$scope.account].address, keys, $scope.toaddress, parseFloat($scope.amount), parseFloat($scope.fee));
       }
       op.then(function(r){
         $scope.$apply(function(){
