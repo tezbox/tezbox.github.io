@@ -120,6 +120,7 @@ a.btn-link{
   left:0;
   right:0;
   bottom:0;
+  overflow: hidden;
 }
 #area div.mainBody>.side{
   padding: 20px;
@@ -482,4 +483,9 @@ position: absolute;
     width: 100%;
     bottom: 30px;
     max-width:1000px;
+}
+.mainTabs .tab-pane#transactions{
+   overflow-y: scroll;
+    height: 450px; 
+   
 }

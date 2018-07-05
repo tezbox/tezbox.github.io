@@ -9,11 +9,10 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
     }
     $scope.showSeed = function(m){
       var mm = m.split(" ");
-      return $sce.trustAsHtml("<span>"+mm.join("</span><span>")+"</span>");
+      return $sce.trustAsHtml("<span>"+mm.join("</span> <span>")+"</span>");
     }
     $scope.newMnemonic();
     $scope.create = function(){
-        $scope.text = "Creating...";
         var keys = window.eztz.crypto.generateKeys($scope.mnemonic, $scope.passphrase);
         var identity = {
             temp : {sk : keys.sk, pk : keys.pk, pkh : keys.pkh},
@@ -23,7 +22,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
             transactions : {},
         };
         Storage.setStore(identity);
-        $location.path("/encrypt");
+        $location.path("/validate");
     };
 }])
 .controller('MainController', ['$scope', '$location', '$http', 'Storage', function($scope, $location, $http, Storage) {
@@ -131,6 +130,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
       }
     };
     $scope.add = function(){
+      if (!confirm("Creating a new account incurs an origination fee of ~0.25XTZ - do you want to continue?")) return;
       var keys = ss.temp;
       window.showLoader();      
       window.eztz.rpc.account(keys, 0, true, true, keys.pkh, 0).then(function(r){
@@ -162,6 +162,19 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         } else alert("There was an error adding account. Please ensure your main account has funds available");
       });
     };
+    $scope.delegates = {
+      keys : [
+      'tz1Tnjaxk6tbAeC2TmMApPh8UsrEVQvhHvx5',
+      'tz1LesY3S4wfe15SNm1W3qJmQzWxLqVjTruH',
+      'tz1TDSmoZXwVevLTEvKCTHWpomG76oC9S2fJ',
+      ],
+      names : [
+        'CryptoDelegate',
+        'xtez.io',
+        'Tezos.Community',
+      ]
+    };
+    
     $scope.loadAccount = function(a){
       $scope.account = a;
       ss.account = $scope.account
@@ -176,6 +189,18 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
           usd : "Loading...",
           raw_balance : "Loading...",
       };
+      window.eztz.rpc.getDelegate($scope.accounts[a].address).then(function(r){
+        $scope.$apply(function(){
+          $scope.dd = r;
+          console.log(r);
+          var ii = $scope.delegates.keys.indexOf($scope.dd);
+          if (ii >= 0){
+            $scope.delegateType = $scope.dd;
+          } else 
+            $scope.delegateType = '';
+          
+        });
+      });
       window.eztz.rpc.getBalance($scope.accounts[a].address).then(function(r){
         $scope.$apply(function(){
           $scope.accountLive = true;
@@ -212,6 +237,11 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         alert("Please enter amount and a destination");
         return;
       }
+      if ($scope.amount < 0) return alert("Invalid amount entered - please enter a positive number");
+      if ($scope.fee < 0) return alert("Invalid amount entered - please enter a positive number");
+      if ($scope.amount != parseFloat($scope.amount)) return alert("Invalid amount entered - please enter a valid number");
+      if ($scope.fee != parseFloat($scope.fee)) return alert("Invalid amount entered - please enter a valid number");
+      if (!confirm("Are you sure you want to send " + $scope.amount + "XTZ to " + $scope.toaddress + "?")) return false;
       window.showLoader();
       var keys = {
         sk : ss.temp.sk,
@@ -221,7 +251,7 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
       if ($scope.parameters){
         var op = window.eztz.contract.send($scope.toaddress, $scope.accounts[$scope.account].address, keys, $scope.amount, $scope.parameters, $scope.fee);
       } else {
-        var op = window.eztz.rpc.transfer($scope.accounts[$scope.account].address, keys, $scope.toaddress, parseFloat($scope.amount), parseFloat($scope.fee));
+        var op = window.eztz.rpc.transfer($scope.accounts[$scope.account].address, keys, $scope.toaddress, $scope.amount, $scope.fee);
       }
       op.then(function(r){
         $scope.$apply(function(){
@@ -337,17 +367,59 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
     };
     
 }])
+app.controller('ValidateController', ['$scope', '$location', 'Storage', '$sce', function($scope, $location, Storage, $sce) {
+    var ss = Storage.loadStore();
+    if (ss  && ss.ensk && typeof ss.temp != 'undefined' && ss.temp.sk && ss.temp.pk && ss.temp.pkh){
+        $location.path('/main');
+    }  else if (ss && ss.ensk){
+        $location.path('/unlock');
+    }
+    $scope.cancel = function(){
+        Storage.clearStore();
+        $location.path('/new');
+    };
+    $scope.passphrase = '';
+    $scope.mnemonic = '';
+    $scope.validate = function(){
+      var keys = window.eztz.crypto.generateKeys($scope.mnemonic, $scope.passphrase);
+      if (keys.pkh != ss.pkh) {
+        alert("Sorry, those details do not match - please try again, or go back and create a new account again");
+      } else {        
+        $location.path("/encrypt");
+      }
+    };
+}])
 .controller('SettingController', ['$scope', '$location', 'Storage', function($scope, $location, Storage) {
     var ss = Storage.loadStore();
     if (!ss || !ss.ensk || !ss.temp){
        $location.path('/new');
     }
     $scope.setting = Storage.loadSetting();
-
+    $scope.privateKey = '';
+    $scope.password = '';
     $scope.save = function(){
       Storage.setSetting($scope.setting);
       window.eztz.node.setProvider($scope.setting.rpc);
       $location.path('/main');
+    }
+    $scope.show = function(){
+      if (!$scope.password) return alert("Please enter your password");
+      window.showLoader();
+      setTimeout(function(){
+        $scope.$apply(function(){
+          try {
+            var raw = sjcl.decrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, ss.pkh, 30000, 512, 'sha512').toString(), ss.ensk);
+          } catch(err){
+            window.hideLoader();
+            $scope.password = '';
+            alert("Incorrect password");
+            return;
+          }
+          $scope.password = '';
+          $scope.privateKey = raw;
+          window.hideLoader();
+        });
+      }, 100);
     };
     
 }])
@@ -380,7 +452,6 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
               var sk = sjcl.decrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, ss.pkh, 30000, 512, 'sha512').toString(), ss.ensk);
               var c = window.eztz.crypto.extractKeys(sk);
             } catch(err){
-              console.log(err);
               try {
                 var sk = sjcl.decrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, '', 10, 32, 'sha512').toString(), ss.ensk);
                 
@@ -388,7 +459,6 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
                 ss.ensk = sjcl.encrypt(window.eztz.library.pbkdf2.pbkdf2Sync($scope.password, c.pkh, 30000, 512, 'sha512').toString(), sk);
                 ss.pkh = c.pkh;
               } catch(err){
-                console.log(err);
                 window.hideLoader();
                 alert("Incorrect password");
                 return;
@@ -468,12 +538,14 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
         if ($scope.type == 'ico' && !$scope.seed) return alert("Please enter your seed words");
         if ($scope.type == 'ico' && !$scope.ico_password) return alert("Please enter your passphrase");
         if ($scope.type == 'ico' && !$scope.email) return alert("Please enter your email from the ICO PDF");
+        if ($scope.type == 'ico' && !$scope.address) return alert("Please enter your address/Public Key Hash from the ICO PDF");
         if ($scope.type == 'private' && !$scope.private_key) return alert("Please enter your private key");
         $scope.text = "Restoring...";
         if ($scope.type == 'seed'){
           var keys = window.eztz.crypto.generateKeys($scope.seed, $scope.passphrase);          
         } else if ($scope.type == 'ico'){
-          var keys = window.eztz.crypto.generateKeys($scope.seed, $scope.email + $scope.ico_password);          
+          var keys = window.eztz.crypto.generateKeys($scope.seed, $scope.email + $scope.ico_password);       
+          if ($scope.address != keys.pkh) return alert("Your fundraiser details don't seem to match - please try again and ensure you are entering your details in correctly.");
         } else if ($scope.type == 'private'){
           var keys = window.eztz.crypto.extractKeys($scope.private_key);          
         }
@@ -490,13 +562,13 @@ app.controller('CreateController', ['$scope', '$location', 'Storage', '$sce', fu
             $scope.$apply(function(){
               window.hideLoader();    
               Storage.setStore(identity);          
+              alert("Activation was successful - please keep in mind that it may take a few minutes for your balance to show");
               $location.path("/encrypt");
             });
           }).catch(function(e){
             $scope.$apply(function(){
               window.hideLoader();    
-              Storage.setStore(identity);          
-              $location.path("/encrypt");
+              return alert("Activation was unsuccessful - please ensure the code is right, or leave it blank if you have already activated it");
             });
           });
         } else {
