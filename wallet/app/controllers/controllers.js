@@ -399,6 +399,7 @@ app.controller('ValidateController', ['$scope', '$location', 'Storage', '$sce', 
     $scope.password = '';
     $scope.save = function(){
       Storage.setSetting($scope.setting);
+      window.eztz.node.setProvider($scope.setting.rpc);
       $location.path('/main');
     }
     $scope.show = function(){
