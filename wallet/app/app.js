@@ -47,6 +47,10 @@ app.config(function($routeProvider) {
         templateUrl : "app/views/encrypt.html",
         controller : "EncryptController",
     })
+    .when("/validate", {
+        templateUrl : "app/views/validate.html",
+        controller : "ValidateController",
+    })
     .otherwise({
         redirectTo: '/new'
     });
