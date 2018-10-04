@@ -135,7 +135,7 @@ header.masthead {
       border-radius: 3px; }
   @media (min-width: 992px) {
     header.masthead {
-      height: 100vh;
+      height: 950px;
       min-height: 775px;
       padding-top: 0;
       padding-bottom: 0; }
