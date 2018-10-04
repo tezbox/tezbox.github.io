@@ -111,7 +111,6 @@ section {
           #mainNav.navbar-shrink .navbar-nav > li > a:hover,
           #mainNav.navbar-shrink .navbar-nav > li > a:focus:hover {
             color: #fdcc52; } }
-
 header.masthead {
   position: relative;
   width: 100%;
@@ -132,11 +131,12 @@ header.masthead {
     margin-right: auto;
     margin-left: auto; }
     header.masthead .device-container .screen img {
-      border-radius: 3px; }
+      border-radius: 3px; margin-top: 50px; }
   @media (min-width: 992px) {
     header.masthead {
       height: 100vh;
       min-height: 775px;
+      padding-top: 40px;
       padding-top: 0;
       padding-bottom: 0; }
       header.masthead .header-content {
