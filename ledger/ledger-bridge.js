@@ -1,4 +1,7 @@
 document.addEventListener("message", function(e){
+  window.tezledger.getAddress(e.data.path)
+          .then(function(r){sendMessageToExtension(e.data.action, true, r)})
+          .catch(function(r){sendMessageToExtension(e.data.action, false, r)});
   if (e && e.data && e.data.target === 'LEDGER-IFRAME') {
     switch (e.data.action) {
       case 'getAddress':
