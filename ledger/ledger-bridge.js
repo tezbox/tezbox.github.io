@@ -1,7 +1,4 @@
-document.addEventListener("message", function(e){
-  window.tezledger.getAddress(e.data.path)
-          .then(function(r){sendMessageToExtension(e.data.action, true, r)})
-          .catch(function(r){sendMessageToExtension(e.data.action, false, r)});
+window.addEventListener("message", function(e){
   if (e && e.data && e.data.target === 'LEDGER-IFRAME') {
     switch (e.data.action) {
       case 'getAddress':
@@ -10,7 +7,7 @@ document.addEventListener("message", function(e){
           .catch(function(r){sendMessageToExtension(e.data.action, false, r)});
       break;
       case 'sign':
-          window.tezledger.sign(e.data.path, e.data.bytes)
+          window.tezledger.sign(e.data.path, e.data.data)
           .then(function(r){sendMessageToExtension(e.data.action, true, r)})
           .catch(function(r){sendMessageToExtension(e.data.action, false, r)});
       break;
@@ -20,6 +17,7 @@ document.addEventListener("message", function(e){
 function sendMessageToExtension(action, success, data) {
   window.parent.postMessage({
     action : action,
+    target : "TEZBOX-EXT",
     success : success,
     data : data
   }, '*')
