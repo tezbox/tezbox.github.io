@@ -52,6 +52,19 @@
     .headLogo{
       width:250px;
     }
+		.badge-link img{
+		width:100px;
+			height:80px; 
+	 }
+		.badge-link{
+			display: inline-block;
+			background-color: #fff;
+			border-radius: 15px;
+			border: 1px solid red;
+			margin: 0 20px;
+			    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
+			
+		}
     </style>
   </head>
 
@@ -88,18 +101,15 @@
             <img src="img/multiplatform.png" class="img-fluid " alt="">
             <div class="col-md-12 mx-auto">
               
-              <p style="margin-bottom:0;margin-top:10px;font-weight:bold;">Available on the mainnet</p>
+              <p style="margin-bottom:10px;margin-top:10px;font-weight:bold;">Available now!</p>
               <div style="margin-top:0;"class="download-buttons">
                 <a class="badge-link" href="https://wallet.tezbox.com" target="_blank"><img src="img/online.png" alt=""></a>
-                <!--<a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>-->
                 <a class="badge-link" href="https://chrome.google.com/webstore/detail/tezbox/mnfifefkajgofkcjkemidiaecocnkjeh" target="_blank"><img src="img/chrome.png" alt=""></a>
+                <a class="badge-link" href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"><img src="img/windows.png" alt=""></a>
+                <a class="badge-link" href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"><img src="img/mac.png" alt=""></a>
               </div>
-              <p style="margin-bottom:0;margin-top:10px;font-weight:bold;">Coming soon to the mainnet</p>
-              <div style="margin-top:0;" class="download-buttons">
-                <a class="badge-link" href="https://play.google.com/store/apps/details?id=io.github.tezbox" target="_blank"><img src="img/google-play-badge.svg" alt=""></a>
-                <!--<a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>-->
-              </div>
-              <p style="margin-top:10px;font-weight:bold;">with macos, Windows, *nix and iOS in development...</p>
+              <p style="margin-bottom:0;margin-top:10px;font-weight:bold;">Coming soon to Android, iOS and *nix</p>
+              
             </div>
           </div>
         </div>
@@ -112,10 +122,6 @@
       .download-buttons a:hover {
         opacity:1;
       }
-      
-      .download-buttons a img {
-        width: 200px;
-      }
       .download-buttons {
         text-align:center;
         margin-top:30px;
@@ -127,7 +133,9 @@
       <div class="container">
         <div class="section-heading text-center">
           <h2>TezBox Features</h2>
-          <p class="text-muted">TezBox was the earliest functional GUI wallet for Tezos, developed shortly after the ICO by @stephenandrews. TezBox has grown to be one of the major community developed wallets and will continue to provide users and developers with an easy to use, powerful and secure wallet.</p>
+          <p class="text-muted">TezBox was the earliest functional GUI wallet for Tezos, developed shortly after the ICO by @stephenandrews. TezBox was the only available GUI wallet at Betanet launch in June 2018, and the first GUI wallet to integrate Trezor and Ledger support. TezBox has grown to be one of the major wallets and will continue to provide users and developers with an easy to use, powerful and secure wallet.</p>
+					<img style="width:200px;margin:50px;" src="img/ledger-logo.svg" />
+					<img style="width:200px;margin:50px;" src="img/trezor-logo.svg" />
           <hr>
         </div>
         <div class="row">
@@ -152,15 +160,15 @@
                 <div class="col-lg-6">
                   <div class="feature-item">
                     <i class="icon-lock text-primary"></i>
-                    <h3>Decentralized</h3>
-                    <p class="text-muted">All private keys are stored on your device safely and securely - with Trezor and Ledger support in development</p>
+                    <h3>Secure</h3>
+                    <p class="text-muted">All private keys are stored on your device safely and securely, with Trezor and Ledger support. TezBox has successfully completed a number of security audits, including one by LeastAuthority</p>
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="feature-item">
                     <i class="icon-screen-smartphone text-primary"></i>
                     <h3>Extremely Mobile</h3>
-                    <p class="text-muted">Easily backup your TezBox on multiple devices and use it while you are on the run from multiple devices and platforms</p>
+                    <p class="text-muted">Easily backup your TezBox on multiple devices and use it while you are on the run from multiple devices and platforms. With an Online wallet, browser extension, mobile and desktop wallet, you can use TezBox anywhere!</p>
                   </div>
                 </div>
               </div>
@@ -176,7 +184,7 @@
                   <div class="feature-item">
                     <i class="icon-speech text-primary"></i>
                     <h3>Open Source</h3>
-                    <p class="text-muted">All of our code is online, open source and auditable. Feel free to fork, pull, push and report and issues</p>
+                    <p class="text-muted">All of our code is online, open source and auditable. TezBox is a completely decentralized wallet with not central server storing your private data. Feel free to fork, pull, push and report and issues</p>
                   </div>
                 </div>
               </div>
@@ -195,7 +203,7 @@
             </a>
           </li>
           <li class="list-inline-item social-google-plus">
-            <a target="_blank" href="mail:stephen@andrewstribe.co.nz">
+            <a target="_blank" href="mail:info@teztech.io">
               <i class="fa fa-envelope"></i>
             </a>
           </li>
@@ -210,7 +218,7 @@
 
     <footer>
       <div class="container">
-        <p>&copy; 2017 TezBox. All Rights Reserved.</p>
+        <p>&copy; 2018 TezBox. All Rights Reserved.</p>
         <p>Donate Tez -  tz1cLDXASgh48ntYmLqM3cqPEXmUtpJVVPma</p>
         <p>Donate Bitcoin -  <a href="bitcoin:1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1">1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1</a></p>
       </div>
