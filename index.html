@@ -1,240 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html> 
+	<head>
+		<title>TezBox - Secure Tezos Wallet</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+		<link rel="icon" href="./img/favicon.ico" type="image/x-icon">
+	</head>
+	<style>
+	.navbar-inverse .navbar-nav>li>a:focus {
+    color: inherit;
+    background-color: transparent;
+}
+	</style>
+	<body>
+		<section class="navigat">
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<img src="images/Menu Icon.png" class="img-responsive" alt="menu icon">
+						</button>
+						<a class="navbar-brand" href="#"><img src="images/tezbox-logo.png" class="img-responsive"></a>
+					</div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a class="anim-btn" href="#feature">Features</a></li>
+							<li><a class="anim-btn" href="#socialize">Socialize</a></li>
+							<li><a href="#" class="hidden-lg hidden-md hidden-sm">Github</a></li>
+							<li><button type="button" class="btn-github xs-hidden-xs" ><i class="fab fa-github"> </i>  Github</button></li>
+							<li><a href="#" class='anim-btn'><img src="images/Tezos Logo.png" alt="tezos" class="nav-tezos"></a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</section>
+		<section class="banner" id="banner">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-5 col-sm-12 col-xs-12">
+						<h1 class="primary-text-color font600">Secure<br/><span class="font800">Tezos Wallet</span></h1>
+						<div class="hide-unhide hidden-xs" style="    margin: 40px 0;
+	">
+							<h3 class="text-center">Available Now!</h3>
+							<ul class="list-inline">
+								<li><a href="https://wallet.tezbox.com/" target="_blank"></a></li>
+								<li><a href="https://chrome.google.com/webstore/detail/tezbox/mnfifefkajgofkcjkemidiaecocnkjeh" target="_blank"></a></li>
+								<li><a href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"></a></li>
+								<li><a href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"></a></li>
+							</ul>
+							<p class="font800 padd20">Coming soon to Android, iOS and Linux</p>	
+							<a href="#feature"><img src="images/arrow.png" width="4%" /></a>
+						</div>					
+					</div>
+					<div class="col-md-7 col-sm-12 col-xs-12" style="margin: 30px 0;">
+						<img src="images/Mockup.png" class="img-responsive mockup" alt="Mockup">
+						<div class="hide-unhide hidden-lg hidden-md hidden-sm">
+							<h3 class="text-center">Available Now!</h3>
+						<ul class="list-inline">
+							<li><a href="https://wallet.tezbox.com/" target="_blank"></a></li>
+							<li><a href="https://chrome.google.com/webstore/detail/tezbox/mnfifefkajgofkcjkemidiaecocnkjeh" target="_blank"></a></li>
+							<li><a href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"></a></li>
+							<li><a href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"></a></li>
+						</ul>
+						<p class="text-center">Coming soon to Android, iOS and Linux</p>	
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="feature" id="feature">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<img src="images/iPhone Mockup.png" alt="iphone mockup" class="img-responsive">
+						<ul class="">
+							<li><a href="/buy-hardware-wallet.html"><img src="images/Ledger Logo.png" alt="Ledger Logo" class="img-responsive"></a></li>
+							<li><a href="/buy-hardware-wallet.html"><img src="images/Trezor Logo.png" alt="Trezor Logo" class="img-responsive"></a></li>
+						</ul>
+						<p class="text-center">TezBox was the only available GUI wallet at Betanet launch in June 2018, and the first GUI wallet to integrate Trezor and Ledger support.</p>
+						<a href="/buy-hardware-wallet.html" class="feature-buy"><img src="images/Button Big.png" alt=""></a>
+					</div>
+					<div class="col-md-6 col-xs-12">
+						<h1 class="font600">TezBox Feature</h1>
+						<p class="heading">TezBox was the earliest functional GUI wallet for Tezos, developed shortly after the ICO by<span class="primary-text-color"> @stephenandrews.</span><br></p>
+						<p class="heading">TezBox has grown to be one of the major community developed wallets and will continue to provide users and developers with an easy to use, powerful and secure wallet.</p>
+						<ul>
+							<li><img src="images/Lock Icon.png" alt=""></li>
+							<li><p class="sub-head font700 font18">Secure</p> <p>All private keys are stored on your device safely and securely, with Trezor and Ledger support for added security. TezBox has successfully completed a number of security audits, including one by LeastAuthority</p></li>
+						</ul>
+						<ul>
+							<li><img src="images/Mobile Icon.png" alt=""></li>
+							<li><p class="sub-head font700 font18">Mobile</p> <p>Easily backup your TezBox and use it while you are on the run from multiple devices and platforms. With an Online wallet, browser extension, mobile and desktop wallet, you can use TezBox anywhere!</p></li>
+						</ul>
+						<ul>
+							<li><img src="images/Code Icon.png" alt=""></li>
+							<li><p class="sub-head font700 font18">Developer Friendly</p> <p>Easily integrate TezBox with your DAPP to streamline payments! Check us out on <span class="primary-text-color font700">github</span> for more details</p></li>
+						</ul>
+						<ul>
+							<li><img src="images/Chat Icon.png" alt=""></li>
+							<li><p class="sub-head font700 font18">Open Source</p> <p>All of our code is online, open source and auditable. TezBox is a completely decentralized wallet with not central server storing your private data. Feel free to fork, pull, push and report any issues</p></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="socialize" id="socialize">
+			<div class="container-fluid">
+				<h1>Any questions? Let’s <span class="primary-text-color">Socialize!</span></h1>
+				<p>Check the latest updates from our experts on security and crypto assets</p>
+				<br>
+				<div class="socialize-btns">
+					<a href="https://github.com/tezbox" target="_blank" class="pull-left"><img src="images/Github Btn.png" target="_blank" class="img-responsive" alt=""></a><a href="https://twitter.com/TezBox_Wallet" target="_blank"><img src="images/Twitter Btn.png"  class="img-responsive" alt=""></a>
+				</div>			
+					<br>
+					<p class="font700">or send us an<a href="mail:hello@teztech.io" class="primary-text-color font800"> email.</a></p>
+			</div>
+		</section>
+		<section class="footer-top">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<img src="images/Tezbox Logo - Footer.png" alt="TezBox">
+					</div>
+					<div class="col-md-6 col-xs-12">
+						<p class="font600 text-right"><span class="font800">Donate Tez</span> - <span class="primary-text-color">tz1cLDXASgh48ntYmLqM3cqPEXmUtpJVVPma</span>
+						<br><span class="font800">Donate Bitcoin</span> - <span class="primary-text-color">1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1</span></p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="footer-bottom">
+			<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<p>© 2018 TezBox. All Rights Reserved.</p>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 text-right">
+					<a href="https://twitter.com/TezBox_Wallet" target="_blank" title="twitter"><i class="fab fa-twitter"></i></a>
+					<a href="https://github.com/tezbox" target="_blank" title="github"><i class="fab fa-github"></i></a>
+				</div>
+			</div>
+			</div>
+			<div class="scroll-top">
+				<a href="#banner" class="anim-btn"><img src="images/top-btn.png"/></a>
+			</div>
+		</section>
 
-  <head>
+		<script>
+			$(document).ready(function(){
+	$(document).on('click', 'a[href^="#"]', function (event) {
+    event.preventDefault();
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>TezBox - Tezos Wallet</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="./img/favicon.ico" type="image/x-icon">
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
-
-    <!-- Custom styles for this template -->
-    <link href="css/new-age.min.css" rel="stylesheet">
-    <style>
-    @media (min-width: 992px) {
-      header.masthead {
-        height: 950px;
-        min-height: 775px;
-        padding-top: 40px;
-        padding-top: 0;
-        padding-bottom: 0; }
-        header.masthead .header-content {
-          margin-bottom: 0;
-          text-align: left; }
-          header.masthead .header-content h1 {
-            font-size: 50px; }
-        header.masthead .device-container {
-          max-width: 325px; } }
-    #mainNav .navbar-brand {
-        color: #222;
-        font-family: Catamaran,Helvetica,Arial,sans-serif;
-        font-weight: 700;
-        letter-spacing: 1px;
-        font-size:1.9em;
-    }
-    .headLogo{
-      width:250px;
-    }
-		.badge-link img{
-		width:100px;
-			height:80px; 
-	 }
-		.badge-link{
-			display: inline-block;
-			background-color: #fff;
-			border-radius: 15px;
-			border: 1px solid red;
-			margin: 0 20px;
-			    box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important;
-			
-		}
-    </style>
-  </head>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="headLogo" src="img/logo.png"></a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#features">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Socialize</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" target="_blank" href="https://github.com/tezbox/tezbox-chrome-plugin">View it on Github</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-    <header class="masthead">
-      <div class="container h-100">
-        <div class="row h-100">
-          <div class="col-lg-12 my-auto" style="text-align:center;">
-            <img src="img/multiplatform.png" class="img-fluid " alt="">
-            <div class="col-md-12 mx-auto">
-              
-              <p style="margin-bottom:10px;margin-top:10px;font-weight:bold;">Available now!</p>
-              <div style="margin-top:0;"class="download-buttons">
-                <a class="badge-link" href="https://wallet.tezbox.com" target="_blank"><img src="img/online.png" alt=""></a>
-                <a class="badge-link" href="https://chrome.google.com/webstore/detail/tezbox/mnfifefkajgofkcjkemidiaecocnkjeh" target="_blank"><img src="img/chrome.png" alt=""></a>
-                <a class="badge-link" href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"><img src="img/windows.png" alt=""></a>
-                <a class="badge-link" href="https://github.com/tezbox/desktop-wallet/releases/latest" target="_blank"><img src="img/mac.png" alt=""></a>
-              </div>
-              <p style="margin-bottom:0;margin-top:10px;font-weight:bold;">Coming soon to Android, iOS and *nix</p>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-    <style>
-    .download-buttons:hover a {
-        opacity:0.5;
-      }
-      .download-buttons a:hover {
-        opacity:1;
-      }
-      .download-buttons {
-        text-align:center;
-        margin-top:30px;
-      }
-    </style>
+    $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top
+    }, 500);
+});
+	});
+		</script>
 
 
-    <section class="features" id="features">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>TezBox Features</h2>
-          <p class="text-muted">TezBox was the earliest functional GUI wallet for Tezos, developed shortly after the ICO by @stephenandrews. TezBox was the only available GUI wallet at Betanet launch in June 2018, and the first GUI wallet to integrate Trezor and Ledger support. TezBox has grown to be one of the major wallets and will continue to provide users and developers with an easy to use, powerful and secure wallet.</p>
-					<img style="width:200px;margin:50px;" src="img/ledger-logo.svg" />
-					<img style="width:200px;margin:50px;" src="img/trezor-logo.svg" />
-          <hr>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 my-auto">
-            <div class="device-container">
-              <div class="device-mockup iphone6_plus portrait white">
-                <div class="device">
-                  <div class="screen">
-                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                    <img src="img/demo-screen-1.jpg" class="img-fluid" alt="">
-                  </div>
-                  <div class="button">
-                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8 my-auto">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-lock text-primary"></i>
-                    <h3>Secure</h3>
-                    <p class="text-muted">All private keys are stored on your device safely and securely, with Trezor and Ledger support. TezBox has successfully completed a number of security audits, including one by LeastAuthority</p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-screen-smartphone text-primary"></i>
-                    <h3>Extremely Mobile</h3>
-                    <p class="text-muted">Easily backup your TezBox on multiple devices and use it while you are on the run from multiple devices and platforms. With an Online wallet, browser extension, mobile and desktop wallet, you can use TezBox anywhere!</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-directions text-primary"></i>
-                    <h3>Developer Friendly</h3>
-                    <p class="text-muted">Easily integrate TezBox with your DAPP to streamline payments! Check us out on <a href="https://github.com/tezbox/tezbox-chrome-plugin" target="_blank">github</a> for more details</p>
-                  </div>
-                </div>
-                <div class="col-lg-6">
-                  <div class="feature-item">
-                    <i class="icon-speech text-primary"></i>
-                    <h3>Open Source</h3>
-                    <p class="text-muted">All of our code is online, open source and auditable. TezBox is a completely decentralized wallet with not central server storing your private data. Feel free to fork, pull, push and report and issues</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="contact bg-primary" id="contact">
-      <div class="container">
-        <h2>Lets be social</h2>
-        <ul class="list-inline list-social">
-          <li class="list-inline-item social-twitter">
-            <a target="_blank" href="https://twitter.com/TezBox_Wallet">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-google-plus">
-            <a target="_blank" href="mail:info@teztech.io">
-              <i class="fa fa-envelope"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-facebook">
-            <a target="_blank" href="https://github.com/tezbox">
-              <i class="fa fa-github"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2018 TezBox. All Rights Reserved.</p>
-        <p>Donate Tez -  tz1cLDXASgh48ntYmLqM3cqPEXmUtpJVVPma</p>
-        <p>Donate Bitcoin -  <a href="bitcoin:1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1">1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1</a></p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/new-age.min.js"></script>
-
-  </body>
-
+	</body>
 </html>
