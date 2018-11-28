@@ -81,6 +81,10 @@ li {
 
 body {
 	font-family: 'visby_cflight_oblique';
+	
+}
+
+body.home{
 	background-image: url('../images/BG - Dots.png'), url('../images/bodybg.png');
 	background-size: contain, auto;
 	background-repeat: no-repeat;
@@ -131,6 +135,7 @@ img{
 	font-weight: bolder;
 	letter-spacing: 1px;
 	text-decoration: underline;
+	border-width: 80%;
 }
 .navigat .navbar-right li button {
 	padding: 6px 16px;
@@ -139,6 +144,17 @@ img{
 	border-radius: 10px;
 	border: 1px solid #fff;
 	background: none;
+	font-weight: bold;
+	font-size: 16px;
+	letter-spacing: 2px;
+}
+.navigat .navbar-right li button:hover {
+	padding: 6px 16px;
+	margin: 8px 10px 0 10px;
+	color: #EB1459;
+	border-radius: 10px;
+	border: 1px solid #EB1459;
+	background: #fff;
 	font-weight: bold;
 	font-size: 16px;
 	letter-spacing: 2px;
@@ -203,7 +219,7 @@ p {
 .banner h3 {
 	font-weight: 900;
 	margin-top: 35px;
-	    margin-left: -108px;
+	text-align: left;
 }
 
 .scroll-top{
@@ -285,6 +301,7 @@ p {
 .feature p.text-center {
 	margin: 30px 0;
 }
+.text-right
 .feature .heading{
 	font-size:15px;
 }
@@ -306,14 +323,14 @@ p {
 
 }
 
-.feature a.feature-buy img {
+.feature a.feature-buy img, .primary-btn img{
 	max-width: 275px;
 	display: block;
 	margin: 0 auto;
 	border-radius: 25px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
 }
-.feature a.feature-buy img:hover {
+.feature a.feature-buy img:hover, .primary-btn img:hover{
 	max-width: 275px;
 	display: block;
 	margin: 0 auto;
@@ -564,4 +581,115 @@ ul.list-inline li {
     min-height: unset;
     width: 17vmin;
 }
+
+.internal-pg .product-info{
+	text-align:center;
 }
+.internal-pg .product-info .price { !important;
+    float: none !important;
+}
+.internal-pg .cta {
+    padding: 9px 0px !important;
+    text-align: center !important;
+    float: none !important;
+}
+.internal-pg .product-list{
+	padding: 3rem 0 1rem 0;
+}
+
+.internal-pg .brand-logo img {
+    max-width: 37vw;
+}
+.internal-pg h1 {
+    line-height: 55px;
+}
+}
+
+
+
+/*-------internal pages---*/
+/*-------internal pages---*/
+body.internal-pg{
+	background-image:url('../images/BG - Dots.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-attachment: fixed;
+}
+body.internal-pg .navbar-inverse .navbar-nav>li>a,
+body.internal-pg .navbar-inverse .navbar-nav>li>a:hover {
+    color: #000;
+   
+}
+body.internal-pg .navigat .navbar-right li button {
+   
+    color: #eb1459;
+    border: 2px solid #eb1459;
+    transition: .2s ease;
+    
+}
+
+body.internal-pg .navigat .navbar-right li button:hover {
+   
+    color: #ffffff;
+    
+    border: 2px solid #EB1459;
+    background: #ee0556;
+
+}
+.internal-pg .product-info .price{
+	    display: inline-block;
+    float: left;
+}
+.internal-pg .product-info .price{
+
+}
+.internal-pg .cta{
+    padding: 9px 0px;
+    text-align: right;
+        float: right;
+}
+
+.internal-pg .price h6{
+	color: #000;
+    font-family: arial;
+    letter-spacing: 1px;
+}
+
+.internal-pg .product-info{
+	margin-top: 25px;
+}
+
+.internal-pg .product-list .product-img{
+max-width: 170px;
+}
+
+
+.pt5{
+	padding: 5rem 0;
+}
+
+
+.internal-pg h1{
+	padding: 2rem 0;
+}
+
+.internal-pg .brand-logo img{
+	    max-width: 170px;
+}
+.internal-pg nav{
+	box-shadow: 2px 2px 12px 0px #0000001f;
+
+}
+.internal-pg p{
+	line-height: 26px;
+}
+
+.p-bt-3{
+	padding: 3rem 0;
+}
+
+.primary-section {
+	min-height: 80vh;
+}
+
