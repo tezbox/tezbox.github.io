@@ -132,7 +132,7 @@ img{
 	letter-spacing: 1px;
 	text-decoration: underline;
 }
-.navigat .navbar-right li button {
+.navigat .navbar-right li button, .navigat .navbar-right li a.btn {
 	padding: 6px 16px;
 	margin: 8px 10px 0 10px;
 	color: #fff;
@@ -345,7 +345,7 @@ p {
 	border-radius: 15px;
     box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.3);
 }
-.socialize p{ 
+.socialize p{
     padding: 20px 0;
     font-weight: 600;
     font-size: 17px;
@@ -376,7 +376,7 @@ p {
 
 .footer-bottom p {
     font-size: 15px;
-    opacity: .7;	
+    opacity: .7;
 }
 
 .footer-bottom div.text-right a {
@@ -389,7 +389,7 @@ p {
 /*****************media queries******************/
 
 @media only screen and (min-width: 1025px) {
-	
+
 	section.banner {
 		padding-top: 48px;
 		padding-bottom: 48px;
@@ -423,7 +423,7 @@ p {
 		background-size: 100%;
 		background-repeat: repeat;
 	}
-	
+
 	section.navigat {
 		background: #eef0f6;
 		border-bottom: 1px solid #6c7b8a;
@@ -441,7 +441,7 @@ p {
 	.banner img.mockup {
 		max-width: 100%;
 	}
-	
+
 	.banner ul.list-inline li:nth-child(1) {
 		background-image: url('../images/Wallet Btn - Hover.png');
 	}
