@@ -281,6 +281,14 @@ p {
 	background-image: url('../images/Windows Btn - Hover.png');
 }
 
+.banner ul.list-inline li:nth-child(5) {
+	background-image: url('../images/Android Btn.png');
+}
+
+.banner ul.list-inline li:nth-child(5):hover {
+	background-image: url('../images/Android Btn - Hover.png');
+}
+
 .banner img.mockup {
 	margin: 0 auto;
 	margin-top: 20px;
