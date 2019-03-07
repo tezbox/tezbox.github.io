@@ -1,107 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html> 
+	<head> 
+		<title>tezbox</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+	<style>
+	.navbar-inverse .navbar-nav>li>a:focus {
+    color: inherit;
+    background-color: transparent;
+}
+	</style>
+	<body class="internal-pg">
+		<section class="navigat">
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+						<img src="images/Menu Icon.png" class="img-responsive" alt="menu icon">
+						</button>
+						<a class="navbar-brand" href="#"><img src="images/tezbox-logo.png" class="img-responsive"></a>
+					</div>
+					<div class="collapse navbar-collapse" id="myNavbar">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a class="anim-btn" href="#feature">Features</a></li>
+							<li><a class="anim-btn" href="#socialize">Socialize</a></li>
+							<li><a href="#" class="hidden-lg hidden-md hidden-sm">Github</a></li>
+							<li><button type="button" class="btn-github xs-hidden-xs" ><i class="fab fa-github"> </i>  Github</button></li>
+							<li><a href="#" class='anim-btn'><img src="images/Tezos Logo.png" alt="tezos" class="nav-tezos"></a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</section>
 
-  <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+		<section class="primary-section pt5">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-12">
+						<H1 class="text-center primary-text-color font700 text-capitalize">Disclaimer</H1>
+						<p>TezBox is a community developed project, and offers no protection against potential hacks or losses of financial assets or digital tokens stored within the TezBox wallet. You are using this wallet at your own risk.</p>
+					</div>
+				</div>
+				
+			</div>
+		</section>
 
-    <title>TezBox - Tezos Wallet</title>
+		<section class="footer-top">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-6 col-xs-12">
+						<img src="images/Tezbox Logo - Footer.png" alt="TezBox">
+					</div>
+					<div class="col-md-6 col-xs-12">
+						<p class="font600 text-right"><span class="font800">Donate Tez</span> - <span class="primary-text-color">tz1cLDXASgh48ntYmLqM3cqPEXmUtpJVVPma</span>
+						<br><span class="font800">Donate Bitcoin</span> - <span class="primary-text-color">1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1</span></p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="footer-bottom">
+			<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-xs-12">
+					<p>© 2017 TezBox. All Rights Reserved.</p>
+				</div>
+				<div class="col-md-6 col-sm-6 col-xs-12 text-right">
+					<a href="#" title="twitter"><i class="fab fa-twitter"></i></a>
+					<a href="#" title="github"><i class="fab fa-github"></i></a>
+				</div>
+			</div>
+			</div>
+			<div class="scroll-top">
+				<a href="#banner" class="anim-btn"><img src="images/top-btn.png"/></a>
+			</div>
+		</section>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script>
+			$(document).ready(function(){
+	$(document).on('click', 'a[href^="#"]', function (event) {
+    event.preventDefault();
 
-    <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="vendor/simple-line-icons/css/simple-line-icons.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    $('html, body').animate({
+        scrollTop: $($.attr(this, 'href')).offset().top
+    }, 500);
+});
+	});
+		</script>
 
-    <!-- Plugin CSS -->
-    <link rel="stylesheet" href="device-mockups/device-mockups.min.css">
 
-    <!-- Custom styles for this template -->
-    <link href="css/new-age.min.css" rel="stylesheet">
-    <style>
-    #mainNav .navbar-brand {
-        color: #222;
-        font-family: Catamaran,Helvetica,Arial,sans-serif;
-        font-weight: 700;
-        letter-spacing: 1px;
-        font-size:1.9em;
-    }
-    .headLogo{
-      width:250px;
-    }
-    </style>
-  </head>
-
-  <body id="page-top">
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNavSub">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="/"><img class="headLogo" src="img/logo.png"></a>
-        
-      </div>
-    </nav>
-
-    <section class="features" id="features">
-      <div class="container">
-        <div class="section-heading text-center">
-          <h2>Disclaimer</h2>
-          <p class="text-muted">TezBox is a community developed project, and offers no protection against potential hacks or losses of financial assets or digital tokens stored within the TezBox wallet. You are using this wallet at your own risk.</p>
-          <hr>
-        </div>
-        <div class="">
-          <p><strong>More coming soon...</strong></p>
-        </div>
-      </div>
-    </section>
-    <section class="contact bg-primary" id="contact">
-      <div class="container">
-        <h2>Lets be social</h2>
-        <ul class="list-inline list-social">
-          <li class="list-inline-item social-twitter">
-            <a target="_blank" href="https://twitter.com/TezBox_Wallet">
-              <i class="fa fa-twitter"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-google-plus">
-            <a target="_blank" href="mail:stephen@andrewstribe.co.nz">
-              <i class="fa fa-envelope"></i>
-            </a>
-          </li>
-          <li class="list-inline-item social-facebook">
-            <a target="_blank" href="https://github.com/tezbox">
-              <i class="fa fa-github"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <footer>
-      <div class="container">
-        <p>&copy; 2017 TezBox. All Rights Reserved.</p>
-        <p>Donate Bitcoin -  <a href="bitcoin:1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1">1KSiyfgs5XwTZjaLpmCTHxonsyXMx383P1</a></p>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper/popper.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/new-age.min.js"></script>
-
-  </body>
-
+	</body>
 </html>
